@@ -1,31 +1,67 @@
 //Testing Array 
-  
-  class Dish {
-    Constructor(){
-    this.dishes = dishes
 
-  }  
+let Menu = document.querySelector("#Menu")
 
-    build(){
-    var btn = document.getElementById("btn")
-    var runbtn = document.getElementById("runbtn")
-    var gobtn = document.getElementById("gobtn")
+console.log(dishes)
 
-    var contain = document.getElementById("container")
-    contain.className = "div"
+  function courseDishes(course) {
+    let Dishes = dishes.filter(function(dish){
+      return dish.course == course
+      })
+      return Dishes
+      }
 
-    var menu = document.createElement("h2")
-    menu.innerHTML = "Menu"
-    contain.appendChild(menu)
+let allbtn = document.querySelector("#allbtn")
+allbtn.addEventListener('click',function(){
+  buildDishes(dishes)
+})
 
-    var opening = document.createElement("p")
-    opening.innerHTML = "Our hand-crafted menu uses only the freshest produce and meats, sourced locally and sustainably.  Since 1979 we have supported the farm-to-table experience."
-    menu.appendChild(opening)
-  
-  }  
-  }
-  
-  let d = new Dish()
-  d.build()
+let startbtn = document.querySelector("#startbtn")
+startbtn.addEventListener('click',function(){
+
+let Dishes = courseDishes("Starters")
+buildDishes(Dishes)
+
+})
+
+let runbtn = document.querySelector("#runbtn")
+runbtn.addEventListener('click',function(){
+
+let Dishes = courseDishes("Entrees")
+buildDishes(Dishes)
+
+})
+
+let gotbtn = document.querySelector("#gotbtn")
+gotbtn.addEventListener('click',function(){
+
+let Dishes = courseDishes("Desserts")
+buildDishes(Dishes)
+
+})
 
 
+    function buildDishes(dishesMenu){
+      Menu.innerHTML = ''
+      // Loop
+      dishesMenu.forEach(function(dish){
+    
+    
+        let dishOne = `<img src='${dish.imageURL}' />
+        <h3>
+        ${dish.title}
+        </h3>
+        <h3>
+        ${dish.course}
+        </h3>
+        <p>
+          ${dish.description}
+        </p>
+        <p>
+          ${dish.price}
+        </p>
+        `
+        Menu.innerHTML += dishOne
+      })
+      }
+      buildDishes(dishes)
